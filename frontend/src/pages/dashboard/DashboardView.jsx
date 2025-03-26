@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { MdIncompleteCircle } from 'react-icons/md'
 import { API_URL } from '../../redux/slice/booksApi/bookApiSlice';
-import Loading from '../../components/Loader'
+import Loader from '../../components/Loader'
 import RevenueChartBars from './RevenueChartBars';
 // import RevenueChartBars from './RevenueChartBars';
 // import RevenueChart from './RevenueChartBars';
@@ -17,9 +17,10 @@ const DashboardView = () => {
     useEffect(() =>{
         const fetchData = async ()=>{
             try {
+              const token = localStorage.getItem("token")?.trim();
                 const res = await axios.get(`${API_URL}/api/admin`, {
                     headers:{
-                        "Authorization": `Bearer ${localStorage.getItem('token')}`,
+                        "Authorization": token ? `Bearer ${localStorage.getItem('token')}` : " ",
                         "Content-Type": "application/json"
                     }
                 })
@@ -34,7 +35,7 @@ const DashboardView = () => {
 
     console.log(data)
 
-    if(loading) return <Loading/>
+    if(loading) return <Loader/>
 
   return (
     <>
@@ -88,6 +89,7 @@ const DashboardView = () => {
                <div className="px-6 py-5 font-semibold border-b border-gray-100">The number of orders per month</div>
                <div className="p-4 flex-grow">
                  <div className="flex items-center justify-center h-full px-4 py-16 text-gray-400 text-3xl font-semibold bg-gray-100 border-2 border-gray-200 border-dashed rounded-md">
+                 {/* CHART BAR */}
                  <RevenueChartBars />
                  </div>
                </div>
@@ -196,7 +198,7 @@ const DashboardView = () => {
              </div>
            </section>
            <section className="text-right font-semibold text-gray-500">
-             <a href="#" className="text-purple-600 hover:underline">Recreated on Codepen</a> with <a href="https://tailwindcss.com/" className="text-teal-400 hover:underline">Tailwind CSS</a> by Azri Kahar, <a href="https://dribbble.com/shots/10711741-Free-UI-Kit-for-Figma-Online-Courses-Dashboard" className="text-purple-600 hover:underline">original design</a> made by Chili Labs
+             <a href="#" className="text-purple-600 hover:underline">Created</a> with <a href="https://tailwindcss.com/" className="text-teal-400 hover:underline">Tailwind CSS</a> <span>by Clinton</span> 
            </section>
    </>
   )

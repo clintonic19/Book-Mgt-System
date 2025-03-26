@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaGooglePlusG } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import { useAuth } from "../reactContext/authContext";
+import Swal from "sweetalert2";
 
 const Register = () => {
     //AUTH USER FROM AUTH CONTEXT
@@ -25,7 +26,12 @@ const Register = () => {
               const onSubmit = async(data) => {
                 try {
                     const user = await signUpUser( data.email, data.password );
-                    alert('User Registered Successfully', user);
+                    // alert('User Registered Successfully', user);
+                    Swal.fire({
+                        title: "Account Created Successfully",
+                        icon: "success",
+                        draggable: true
+                      });
                     navigate('/login');
                 } catch (error) {
                     console.log(error);

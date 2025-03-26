@@ -8,20 +8,21 @@ import SelectField from '../Add-book/SelectedField';
 const AddBook = () => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
-    const [imageFile, setimageFile] = useState(null);
+    const [imageFile, setImageFile] = useState(null);
     const [addBook, {isLoading, isError}] = useAddBookMutation()
-    const [imageFileName, setimageFileName] = useState('')
+    const [imageFileName, setImageFileName] = useState('')
 
     // Handle form submission
     const onSubmit = async (data) => {
  
         const newBookData = {
-            // ...data,
-            coverImage: imageFile
+            ...data,
+            coverImage: imageFile //Add cover Image 
         }
         try {
-            await addBook({...data, newBookData})?.unwrap();
-            Swal.fire({
+            // await addBook({...data, newBookData})?.unwrap();
+            await addBook({newBookData})
+            Swal.fire({ 
                 title: "Book added",
                 text: "Your book is uploaded successfully!",
                 icon: "success",
@@ -31,8 +32,8 @@ const AddBook = () => {
                 confirmButtonText: "Yes, It's Okay!"
               });
               reset();
-              setimageFileName('')
-              setimageFile(null);
+              setImageFileName('')
+              setImageFile(null);
         } catch (error) {
             console.error(error);
             // alert("Failed to add book. Please try again.", isError);
@@ -46,7 +47,9 @@ const AddBook = () => {
                 confirmButtonText: "Yes, It's Okay!"
               });   
         }
-        console.log(data?.newBookData);
+        console.log("New Books Adding::::",data?.newBookData);
+        console.log("Book:::::",newBookData);
+        console.log("DATA:::::", data);
         
     }
 
@@ -55,8 +58,8 @@ const AddBook = () => {
     const handleFileChange = (e) => {
         const file = e.target.files[0];
         if(file) {
-            setimageFile(file);
-            setimageFileName(file.name);
+            setImageFile(file);
+            setImageFileName(file.name);
         }
     }
 

@@ -45,13 +45,13 @@ const AdminLogin = () => {
                             icon: "success",
                             showCancelButton: false,
                             confirmButtonColor: "#3085d6",
-                            cancelButtonColor: "#d33",
+                            // cancelButtonColor: "#d33",
                             confirmButtonText: "Yes, It's Okay!"
                         })
                         navigate("/dashboard");  
         }catch (error) {
-            console.log(error);
             setMessage('Invalid Username and Password');    
+            console.log(error);
         }
       };
 

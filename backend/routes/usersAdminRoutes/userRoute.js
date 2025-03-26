@@ -6,4 +6,5 @@ const router = express.Router();
 //POST ADMIN API
 router.post('/admin', userAdmin);
 
+
 module.exports = router;

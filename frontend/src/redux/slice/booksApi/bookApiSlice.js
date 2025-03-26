@@ -7,7 +7,7 @@ const baseQuery = fetchBaseQuery({baseUrl: API_URL + "/api/books"},{
     prepareHeaders: (Headers) => {
         const token = localStorage.getItem('token');
         if(token){
-            Headers.set('authorization', `Bearer ${token}`);
+            Headers.set('Authorization', `Bearer ${token}`);
         }
         return Headers;
     }
@@ -51,8 +51,8 @@ export const booksApi = createApi({
 
         // Update a book
         updateBook: builder.mutation({
-            query: (id, ...data) => ({
-                url: `/edit/${data.id}`,
+            query: ({ id, ...data }) => ({
+                url: `/edit/${id}`,
                 method: 'PUT',
                 body: data,
                 headers: {

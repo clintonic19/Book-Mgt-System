@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form"
 import InputForm from "./InputForm";
 import { useAuth } from "../reactContext/authContext";
+import Swal from "sweetalert2";
 
 const Login = () => {
 
@@ -22,7 +23,12 @@ const Login = () => {
       const onSubmit = async (data) => {
         try {
             const user = await loginUser(data.email, data.password);
-            alert('User Logged In Successfully', user);
+            // alert('User Logged In Successfully', user);
+            Swal.fire({
+                title: "Login Successfully",
+                icon: "success",
+                draggable: true
+              });
             if(!user){
                 setMessage('Invalid Email and Password');
             }

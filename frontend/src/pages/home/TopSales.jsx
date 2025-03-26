@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-key */
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import BookCards from "../books/BookCards";
 
 // Import Swiper React components
@@ -13,7 +13,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { useFetchAllBooksQuery } from "../../redux/slice/booksApi/bookApiSlice";
 
-const categories =[ "Select Category", "Fiction", "Horror", "Adventure", "Biography", "History", ]
+const categories = [ "Select Category", "Fiction", "Horror", "Adventure", "Biography", "History", "Others" ]
 
 const TopSales = () => {
     // const [books, setBooks] = useState([]);
@@ -27,15 +27,19 @@ const TopSales = () => {
     //         setBooks(data)
     //     }
     //     fetchBooks()
+    //     console.log(fetchBooks);
     // }, []);
 
     // Fetching the books data from the DATABASE
-    const { data: books= []  } = useFetchAllBooksQuery();
-    console.log(books);
-    
+    const { data: books = []  } = useFetchAllBooksQuery();
 
   // Filter the books based on the selected category
-    const filteredBook = selectedCategory === "Select Category" ? books :  books?.data?.filter(book => book?.category === selectedCategory?.toLowerCase());
+  const filteredBooks = selectedCategory === "Select Category" 
+  ? books 
+  : books?.books?.filter(book => book?.books?.category?.toLowerCase() === selectedCategory?.toLowerCase());
+    
+  // const filteredBook = selectedCategory === "Select Category" ? books :  books?.books?.filter(book => book?.category === selectedCategory?.toLowerCase());
+    // console.log(":::::::::",books.books);
     
   return (
     <>
@@ -86,20 +90,21 @@ const TopSales = () => {
         className="mySwiper"
       >
             {
-              // filteredBook.length > 0 && filteredBook.map((book, index) => (
-              //   <SwiperSlide key={index} >
-              //       <BookCards book={book}/>
+              // filteredBook?.books?.length > 0 && books?.books?.map((book, index) => (
+              filteredBooks?.books?.length > 0 && books?.books?.map((book, index) => (
+                //   <SwiperSlide key={index} >
+                //       <BookCards book={book}/>
               //   </SwiperSlide>
               //   ))
-                filteredBook?.data?.length > 0 && filteredBook?.data?.map((book, index) => (
+              // Object.keys(books).length > 0 && books?.books?.map((book, index) => (
+                // filteredBooks?.data?.length > 0 && filteredBooks?.map((book, index) => (
+                  console.log(":::::::::BOOK", ),
                     <SwiperSlide key={index} >
                         <BookCards book={book}/>
                     </SwiperSlide>
-                    
-                ))
+                                    ))
             }
       </Swiper>
-
             </div>
     </>
   )

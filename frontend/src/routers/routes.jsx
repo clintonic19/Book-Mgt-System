@@ -18,7 +18,7 @@ import AddBook from '../pages/dashboard/Add-book/AddBook.jsx';
 
 const router = createBrowserRouter([
 
-     // DECLARATION OF ROUTES
+     // DECLARATION OF ROUTES FOR THE APPLICATION
      {
         path: "/",
         element: <App/>,
@@ -67,6 +67,7 @@ const router = createBrowserRouter([
         ]
     },
 
+    //ADMIN LOGIN ROUTE
     {
         path: "/admin",
         element: <Admin/>,

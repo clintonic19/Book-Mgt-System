@@ -6,7 +6,7 @@ const router = express.Router();
 //POST ORDER API
 router.post('/', createOrder);
 
-//GET BY USER EMAIL
+//GET ORDER BY USER EMAIL
 router.get('/email/:email', getOrderByEmail);
 
 module.exports = router;

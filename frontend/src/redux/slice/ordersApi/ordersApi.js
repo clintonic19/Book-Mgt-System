@@ -44,8 +44,8 @@ export const ordersApi = createApi({
                 method: 'GET',
                 body: email,
                 credentials: 'include',
-                providesTags: ['Orders']
-            })
+            }),
+            providesTags: ['Orders']
     })
 
 

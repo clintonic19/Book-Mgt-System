@@ -12,9 +12,10 @@ const verifyAdminToken =  (req, res, next) => {
     //     return res.status(201).json({ message: 'Access Granted.  Admin is Allowed' });
     // }
 
+    //CHECK IF TOKEN IS VALID then VERIFY TOKEN USER
     jwt.verify(token, process.env.JWT_SECRET_KEY, (err, user) => {
         if (err) {
-            return res.status(403).json({ message: 'Invalid credientials' });
+            return res.status(403).json({ message: 'Invalid credentials' });
         }
         req.user = user;
         next();
@@ -44,7 +45,7 @@ const verifyAdminToken =  (req, res, next) => {
 
 //         if (!token) {
 //             res.status(401);
-//             throw new Error("Unathorized User or Token");
+//             throw new Error("Unauthorized User or Token");
 //         };
 //     };
 // });

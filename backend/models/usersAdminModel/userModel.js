@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const bcrypt = require("bcrypt");
 
-
+// User Schema
 const userSchema = new Schema({
 
     username:{
@@ -20,6 +20,7 @@ const userSchema = new Schema({
         enum: ["user", "admin"],
         required: true
     }
+    
 });
 
 // Encrypt password before saving

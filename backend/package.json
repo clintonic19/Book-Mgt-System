@@ -13,6 +13,7 @@
   "description": "This is a Bookstore API project built with Node.js, Express, and MongoDB. It is a RESTful API that allows you to perform CRUD operations on books, authors, and genres. It also allows you to search for books by title, author, or genre. The API is secured with JWT authentication and authorization. It also includes a user management system with roles and permissions.",
   "dependencies": {
     "bcrypt": "^5.1.1",
+    "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",

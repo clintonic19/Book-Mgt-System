@@ -9,7 +9,6 @@ const ManageBooks = () => {
     const {data: books =[], refetch} = useFetchAllBooksQuery()
 
     const [deleteBook] = useDeleteBookMutation()
-    console.log(books);
 
     // Handle deleting a book
     const handleDeleteBook = async (id) => {
@@ -30,6 +29,8 @@ const ManageBooks = () => {
             console.error('Failed to delete book:', error.message);
             alert('Failed to delete book. Please try again.');
         }
+        console.log("This is the ::::", id);
+        console.log("This is the ::::", undefined);
     };
 
     // Handle navigating to Edit Book page
@@ -50,7 +51,7 @@ const ManageBooks = () => {
                     </div>
                 </div>
             </div>
-
+                {/* BOOK TABLE HEADERS */}
             <div className="block w-full overflow-x-auto">
                 <table className="items-center bg-transparent w-full border-collapse ">
                     <thead>
@@ -73,15 +74,18 @@ const ManageBooks = () => {
                         </tr>
                     </thead>
 
+                    {/* BOOK TABLE BODY INFO */}
+
                     <tbody>
+
                         {
-                            books && books?.data?.map((book, index) => (
+                            books && books?.books?.map((book, index) => (
                                 <tr key={index}>
                                 <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left text-blueGray-700 ">
                                    {index + 1}
                                 </th>
                                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">
-                                    {book.title}
+                                    {book?.title}
                                 </td>
                                 <td className="border-t-0 px-6 align-center border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                                   {book?.category}
@@ -92,7 +96,7 @@ const ManageBooks = () => {
                                 </td>
                                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 space-x-4">
 
-                                    <Link to={`/dashboard/edit-book/${book?._id}`} className="font-medium text-indigo-600 hover:text-indigo-700 mr-2 hover:underline underline-offset-2">
+                                    <Link to={`/dashboard/edit-books/${book?._id}`} className="font-medium text-indigo-600 hover:text-indigo-700 mr-2 hover:underline underline-offset-2">
                                         Edit
                                     </Link>
                                     <button 

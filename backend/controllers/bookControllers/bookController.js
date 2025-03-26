@@ -3,12 +3,12 @@ const express = require('express');
 //LOCAL IMPORTS
 const Book = require("../../models/booksModel/booksModel")
 
-
 //POST BOOK API CONTROLLER FUNCTION 
 const createBook = async (req, res) => {
     try {
-        //DESCRUCTURE REQUEST BODY
+        //DESTRUCTURE REQUEST BODY
        const {  title, description, category, trending, coverImage, oldPrice, newPrice } = req.body;
+
         //CREATE NEW BOOK
        const book =  new Book({title, description, category, trending, coverImage, oldPrice, newPrice });
         //SAVE BOOK
@@ -49,6 +49,7 @@ const getABook = async(req, res)=>{
     }
 }
 
+
 //UPDATE BOOK API CONTROLLER FUNCTION
 const updateBook = async(req, res) =>{
     try {
@@ -75,8 +76,8 @@ const updateBook = async(req, res) =>{
     }
 };
 
-//DELETE BOOK API CONTROLLER FUNCTION
 
+//DELETE BOOK API CONTROLLER FUNCTION
 const deleteBook = async(req, res) => {
     try {
         const bookId = req.params.id;

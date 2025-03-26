@@ -9,7 +9,6 @@ const ProtectedRoutes = ({children}) => {
 
     if(loading){
         return <Loader/>
-
     }
 
     if(currentUser){

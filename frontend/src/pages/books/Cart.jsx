@@ -57,7 +57,7 @@ const Cart = () => {
                                                         <div>
                                                             <div className="flex flex-wrap justify-between text-base font-medium text-gray-900">
                                                                 <h3>
-                                                                    <Link to='/'>{product?.title}</Link>
+                                                                    <Link to='/books/:id'>{product?.title}</Link>
                                                                 </h3>
                                                                 <p className="sm:ml-4">${product?.newPrice}</p>
                                                             </div>

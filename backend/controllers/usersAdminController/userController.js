@@ -8,15 +8,16 @@ const userAdmin = async (req, res) => {
        
        const admin = await userModel.findOne({ username: username});
        
+         // Check if username and password is provided
+         if(!username || !password){
+            res.status(400).json({message: "Please provide username and password"});
+        }
+
        // Check if admin exists
        if(!admin){
            res.status(400).json({message: "Admin not found"});
        }
 
-       // Check if username and password is provided
-       if(!username || !password){
-        res.status(400).json({message: "Please provide username and password"});
-    }
        // Check ADMIN Password is correct
        if(admin.password !== password){
               res.status(400).json({message: "Invalid username and password"});
@@ -34,7 +35,7 @@ const userAdmin = async (req, res) => {
                 // sameSite: 'none', //PREVENT CSRF ATTACKS
                 maxAge: 1000 * 60 * 60 * 24,
             });
-        res.status(200).json({message: " Admin Login successful ", token: token, 
+        res.status(200).json({ message: " Admin Login successful ", token: token, 
                                 user:{username: admin.username, role: admin.role} 
                             });
     } catch (error) {

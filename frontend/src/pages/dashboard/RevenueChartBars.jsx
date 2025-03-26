@@ -1,4 +1,4 @@
-    import  { Bar }  from 'react-chartjs-2';
+    import  { Bar, Radar }  from 'react-chartjs-2';
     import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
     
     // Register Chart.js components
@@ -44,6 +44,7 @@ const RevenueChartBars = () => {
           <h2 className="text-center text-2xl font-bold text-gray-800 mb-4">Monthly Revenue</h2>
           <div className='hidden md:block'>
           <Bar data={data} options={options} className='' />
+          {/* <Radar data={data} options={options} className='' /> */}
           </div>
         </div>
       );

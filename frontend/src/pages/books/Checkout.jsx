@@ -5,6 +5,7 @@ import { useAuth } from '../../reactContext/authContext';
 import { useState } from 'react';
 import { useCreateOrderMutation } from '../../redux/slice/ordersApi/ordersApi';
 import Swal from 'sweetalert2';
+import Loader from '../../components/Loader';
 
 const Checkout = () => {
     const cartItems = useSelector(state => state.cart.cartItems);
@@ -21,10 +22,10 @@ const Checkout = () => {
     } = useForm()
 
     // Create order mutation
-    const [ createOrder ] =  useCreateOrderMutation();
+    const [ createOrder, {isLoading} ] =  useCreateOrderMutation();
 
     const onSubmit = async (data) => {
-     
+     console.log("This is ::::::",data);
         const newOrder = {
             name: data.name,
             email: currentUser?.email,
@@ -74,9 +75,11 @@ const Checkout = () => {
         //     console.error("Error place an order", error);
         //     alert("Failed to place an order")
         // }
+        console.log(newOrder);
+        
     }
 
-    // if(isLoading) return <div>Loading....</div>
+    if(isLoading) return < Loader />
     // if(error) return <div>{error}</div>
    
 
@@ -89,7 +92,7 @@ const Checkout = () => {
                         <div>
                             <h2 className="font-semibold text-xl text-gray-600 mb-2">Cash On Delivery</h2>
                             <p className="text-gray-500 mb-2">Total Price: ${totalPrice}</p>
-                            <p className="text-gray-500 mb-6">Items: {cartItems.length > 0 ? cartItems.length : 0}</p>
+                            <p className="text-gray-500 mb-6">Items: {cartItems?.length > 0 ? cartItems.length : 0}</p>
                         </div>
 
                         

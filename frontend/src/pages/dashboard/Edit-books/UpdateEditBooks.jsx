@@ -42,15 +42,17 @@ const UpdateEditBooks = () => {
       coverImage: data?.coverImage || bookData?.coverImage,
     };
     try {
-      await axios.put(`$${API_URL}/api/books/edit/${id}`, updateBookData, {
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
-        }
-      })
+      // await updateBook({id, updateBookData}).unwrap();
+      await updateBook({id, updateBookData})
+      // await axios.put(`$${API_URL}/api/books/edit/${id}`, updateBookData, {
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //     'Authorization': `Bearer ${localStorage.getItem('token')}`
+      //   }
+      // })
       Swal.fire({
-        title: "Book Updated",
-        text: "Your book is updated successfully!",
+        title: "Book Updated Successfully",
+        // text: "Your book is updated successfully!",
         icon: "success",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
@@ -133,7 +135,7 @@ const UpdateEditBooks = () => {
           register={register}
         />
 
-        <button type="submit" className="w-full py-2 bg-blue-500 text-white font-bold rounded-md">
+        <button type="submit" className="w-full py-2 bg-primary text-white font-bold rounded-md">
           Update Book
         </button>
       </form>

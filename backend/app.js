@@ -3,11 +3,13 @@ const dotenv = require('dotenv');
 const path = require('path');
 require('dotenv').config();
 const cors = require('cors');
+var cookieParser = require('cookie-parser')
+
 
 //LOCAL IMPORTS
 const bookRoutes = require("./routes/bookRoutes/bookRoutes");
 const orderRoutes = require("./routes/orderRoutes/orderRoutes");
-const userAdminRoutes = require("./routes/usersAdminRoutes/userRoute");
+const userRoutes = require("./routes/usersAdminRoutes/userRoute");
 const AdminRoutes = require("./stats/admin.statistic");
 const connectDB = require('./dbConfig/db');
 const {errorHandler, routeNotFound} = require('./middlewares/errorHandlers')
@@ -32,13 +34,14 @@ const _dirname = path.resolve();
 
 //Body parser
 app.use(express.json());
+app.use(cookieParser())
 
 const PORT = process.env.PORT || 5002
 
-//Routes
+//Routes Middleware 
 app.use('/api/books', bookRoutes);
 app.use('/api/orders', orderRoutes);
-app.use('/api/auth', userAdminRoutes);
+app.use('/api/auth', userRoutes);
 app.use('/api/admin', AdminRoutes);
 
 //Error Handlers
