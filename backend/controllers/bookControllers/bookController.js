@@ -28,14 +28,19 @@ const searchBook = async (req, res) =>{
         // const searchQuery = req.params.q;
 
         ///
-        if (!searchQuery || typeof q !== 'string' || q.trim() === '') {
-            return res.status(400).json({ message: "Search query is required" });
-          }
+        // if (!searchQuery || typeof searchQuery !== 'string' || searchQuery.trim() === '') {
+        //     return res.status(400).json({ message: "Search query is required" });
+        //   }
+        //   const searchRegex = new RegExp(searchQuery, 'i');
+
+          console.log("Search Query::::", searchQuery);
+        console.log("Search Query::::", removeSpecialChars);
 
         const books = await Book.find({
             // case-insensitive search
             $or: [
                 { title: { $regex: new RegExp(removeSpecialChars, 'i') } },
+                // { title: { $regex: searchRegex } },
                 // { description: { $regex: new RegExp(removeSpecialChars, 'i') } },
                 // { category: { $regex: new RegExp(removeSpecialChars, 'i') } },
                 // { title: { $regex: "searchQuery", $options: 'i' } },
